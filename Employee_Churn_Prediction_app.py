@@ -19,7 +19,6 @@ with col2:
 
 st.success('###### Our model is trained using 14,999 samples with the following parameters.')
 
-
 st.info("###### Satisfaction Level: It is employee satisfaction point, which ranges from 0-1\n"
         "###### Last Evaluation: It is evaluated performance by the employer, which also ranges from 0-1\n"
         "###### Number of Projects: How many of projects assigned to an employee?\n"
@@ -32,8 +31,7 @@ st.info("###### Satisfaction Level: It is employee satisfaction point, which ran
         "###### Left: Whether the employee has left the company or not")
 
 st.success("###### Information about your employee")
- 
-    
+     
 col, col2 = st.columns([4, 4])
 with col:
     st.markdown("###### Select Your Employee's Department")
@@ -41,14 +39,12 @@ with col:
             ('accounting', 'hr', 'IT', 'management', 'marketing', 'product_mng', 'RandD', 'sales', 'support', 'technical'  
             ))
     
-
 with col2:
     st.markdown("###### Select Your Employee's Salary")
     salary = st.radio(
         "Salary",
         ('low', 'medium', 'high')
         )
-
         
 col1, col2 = st.columns([4, 4])
 
@@ -65,7 +61,6 @@ with col1:
     elif work_accident == "No":     
         work_accident = 0
 
-
 with col2:
     st.markdown("#####")
     st.markdown("###### Has the employee been promoted in the last 5 years?")   
@@ -77,9 +72,8 @@ with col2:
         promotion_last_5years = 1 
     elif promotion_last_5years == "No":     
         promotion_last_5years = 0
+       
 
- 
-    
 satisfaction_level = st.sidebar.slider("Satisfaction level:", 0.0, 1.0, step=0.01, value=0.5)
 
 last_evaluation = st.sidebar.slider("Last Evaluation Score:", 0.0, 1.0, step=0.01, value=0.5)
@@ -115,17 +109,15 @@ df['departments'] = df['departments'].map(department_map)
 df['departments'] = df['departments'].astype('int')
 
 
-
 model = joblib.load("model_rfc_churn.joblib")
 
 st.info("Your Choices for the Employee")
 my_dict
 
-
 if st.button("Predict"):
     pred = model.predict(df)
     
-    if int(pred[0]) == 1:
+    if pred[0] == 0:
         st.error("Your employee has a high probability of churn")
         img = Image.open("churn.jpeg")
         st.image(img, width=300)
