@@ -113,7 +113,7 @@ df['departments'] = df['departments'].map(department_map)
 df['departments'] = df['departments'].astype('int')
 
 
-my_dict.update({"salary": df['salary'],"departments":df['departments']})
+my_dict.update({"salary": df['salary'].values,"departments":df['departments'].values})
 
 model = joblib.load("model_rfc_churn.joblib")
 
