@@ -56,10 +56,10 @@ with col1:
         ('Yes', 'No')
         )   
 
-    if work_accident == "Yes":   
-        work_accident = 1 
-    elif work_accident == "No":     
-        work_accident = 0
+if work_accident == "Yes":   
+    work_accident = 1 
+else:     
+    work_accident = 0
 
 with col2:
     st.markdown("#####")
@@ -67,11 +67,12 @@ with col2:
     promotion_last_5years = st.radio(
         "Promotion Last 5 years",
         ('Yes', 'No')
-        )   
-    if promotion_last_5years == "Yes":   
-        promotion_last_5years = 1 
-    elif promotion_last_5years == "No":     
-        promotion_last_5years = 0
+        )  
+    
+if promotion_last_5years == "Yes":   
+    promotion_last_5years = 1 
+else :     
+    promotion_last_5years = 0
        
 
 satisfaction_level = st.sidebar.slider("Satisfaction level:", 0.0, 1.0, step=0.01, value=0.5)
