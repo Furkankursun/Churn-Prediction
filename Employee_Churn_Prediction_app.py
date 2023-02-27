@@ -10,10 +10,6 @@ st.set_page_config(
 
 st.markdown("<h1 style='text-align: center; color: blue;'>Employee Churn Prediction Application</h1>", unsafe_allow_html=True)
 
-
-
-
-
 _, col2, _ = st.columns([2, 3, 2])
 
 with col2:  
@@ -81,8 +77,7 @@ with col2:
     elif promotion_last_5years == "No":     
         promotion_last_5years = 0
 
-    
-
+ 
     
 satisfaction_level = st.sidebar.slider("Satisfaction level:", 0.0, 1.0, step=0.01, value=0.5)
 
@@ -93,8 +88,6 @@ number_project = st.sidebar.slider("Number of Projects:",min_value=0, max_value=
 average_montly_hours = st.sidebar.slider("Monthly Working Hours:",min_value=90, max_value=360)
 
 time_spend_company = st.sidebar.slider("Years in the Company:",min_value=0, max_value=10)
-
-
 
 
 my_dict = {
@@ -111,7 +104,6 @@ my_dict = {
 
 df=pd.DataFrame.from_dict([my_dict])
 
-
 salary_map = {'high': '3', 'medium': '2' , 'low': '1'}
 df['salary']=df['salary'].map(salary_map)
 df['salary']=df['salary'].astype('int')
@@ -124,21 +116,18 @@ df['departments']=df['departments'].astype('int')
 
 model = joblib.load("model_rfc_churn.joblib")
 
-
-
 st.info("Your Choices for the Employee")
 my_dict
-
 
 
 if st.button("Predict"):
     pred = model.predict(df)
     
-if int(pred[0]) == 1:
-    st.error("Your employee has a high probability of churn")
-    img = Image.open("churn.jpeg")
-    st.image(img, width=300)
-else:
-    st.success("Your employee loves the company")
-    img = Image.open("not churn.png")
-    st.image(img, width=300)           
+    if int(pred[0]) == 1:
+        st.error("Your employee has a high probability of churn")
+        img = Image.open("churn.jpeg")
+        st.image(img, width=300)
+    else:
+        st.success("Your employee loves the company")
+        img = Image.open("not churn.png")
+        st.image(img, width=300)           
