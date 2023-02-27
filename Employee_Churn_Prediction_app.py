@@ -113,6 +113,7 @@ department_map = {'sales': '1', 'technical': '2' , 'support': '3','IT': '4', 'Ra
 df['departments']=df['departments'].map(department_map)
 df['departments']=df['departments'].astype('int')
 
+df = (df - np.min(df)) / (np.max(df) - np.min(df)).values
 
 model = joblib.load("model_rfc_churn.joblib")
 
