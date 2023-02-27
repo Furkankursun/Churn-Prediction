@@ -100,18 +100,20 @@ my_dict = {
 df=pd.DataFrame.from_dict([my_dict])
 
 salary_map = {'high': '3', 'medium': '2' , 'low': '1'}
+
 df['salary'] = df['salary'].map(salary_map)
+
 df['salary'] = df['salary'].astype('int')
 
 
 department_map = {'sales': '1', 'technical': '2' , 'support': '3','IT': '4', 'RandD': '5' , 'product_mng': '6','marketing': '7', 'accounting': '8' , 'hr': '9', 'management': '10'}
+
 df['departments'] = df['departments'].map(department_map)
+
 df['departments'] = df['departments'].astype('int')
 
-my_dict = {
-    'departments': df['departments'].values,
-    'salary': df['salary'].values
-}
+
+my_dict.update({"salary": df['salary'],"departments":df['departments']})
 
 model = joblib.load("model_rfc_churn.joblib")
 
