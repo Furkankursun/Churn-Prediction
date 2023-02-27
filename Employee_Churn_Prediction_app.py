@@ -76,10 +76,10 @@ with col2:
         "Promotion Last 5 years",
         ('Yes', 'No')
         )   
-if promotion_last_5years == "Yes":   
-    promotion_last_5years = 1 
-elif promotion_last_5years == "No":     
-    promotion_last_5years = 0
+    if promotion_last_5years == "Yes":   
+        promotion_last_5years = 1 
+    elif promotion_last_5years == "No":     
+        promotion_last_5years = 0
 
     
 
