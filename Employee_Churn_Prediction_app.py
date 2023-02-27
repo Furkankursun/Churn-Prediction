@@ -85,6 +85,17 @@ average_montly_hours = st.sidebar.slider("Monthly Working Hours:",min_value=90, 
 
 time_spend_company = st.sidebar.slider("Years in the Company:",min_value=0, max_value=10)
 
+my_dict = {
+    'satisfaction_level': satisfaction_level,
+    'last_evaluation': last_evaluation,
+    'number_project': number_project,
+    'average_montly_hours': average_montly_hours,
+    'time_spend_company': time_spend_company,
+    'work_accident': work_accident,
+    'promotion_last_5years': promotion_last_5years,  
+    'departments': departments,
+    'salary': salary
+}
 
 df=pd.DataFrame.from_dict([my_dict])
 
@@ -98,15 +109,8 @@ df['departments'] = df['departments'].map(department_map)
 df['departments'] = df['departments'].astype('int')
 
 my_dict = {
-    'satisfaction_level': satisfaction_level,
-    'last_evaluation': last_evaluation,
-    'number_project': number_project,
-    'average_montly_hours': average_montly_hours,
-    'time_spend_company': time_spend_company,
-    'work_accident': work_accident,
-    'promotion_last_5years': promotion_last_5years,  
-    'departments': df['departments'],
-    'salary': df['salary']
+    'departments': df['departments'].values,
+    'salary': df['salary'].values
 }
 
 model = joblib.load("model_rfc_churn.joblib")
