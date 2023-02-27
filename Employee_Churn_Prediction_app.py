@@ -117,7 +117,7 @@ my_dict
 if st.button("Predict"):
     pred = model.predict(df)
     
-    if pred[0] == 0:
+    if pred[0] == 1:
         st.error("Your employee has a high probability of churn")
         img = Image.open("churn.jpeg")
         st.image(img, width=300)
